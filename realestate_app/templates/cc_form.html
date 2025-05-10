@@ -1,0 +1,13 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h2>Add Credit Card</h2>
+<form method="post">
+  {{ form.hidden_tag() }}
+  <div class="mb-3">{{ form.card_number.label }} {{ form.card_number(class="form-control") }}</div>
+  <div class="mb-3">{{ form.exp_date.label }} {{ form.exp_date(class="form-control") }}</div>
+  <div class="mb-3">{{ form.cvv.label }} {{ form.cvv(class="form-control") }}</div>
+  <div class="mb-3">{{ form.billing_address.label }} {{ form.billing_address(class="form-select") }}</div>
+  <button class="btn btn-primary">{{ form.submit() }}</button>
+</form>
+{% endblock %}

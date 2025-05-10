@@ -1,0 +1,13 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h2>Add Address</h2>
+<form method="post">
+  {{ form.hidden_tag() }}
+  <div class="mb-3">{{ form.street.label }} {{ form.street(class="form-control") }}</div>
+  <div class="mb-3">{{ form.city.label }} {{ form.city(class="form-control") }}</div>
+  <div class="mb-3">{{ form.state.label }} {{ form.state(class="form-control") }}</div>
+  <div class="mb-3">{{ form.zip_code.label }} {{ form.zip_code(class="form-control") }}</div>
+  <button class="btn btn-primary">{{ form.submit() }}</button>
+</form>
+{% endblock %}

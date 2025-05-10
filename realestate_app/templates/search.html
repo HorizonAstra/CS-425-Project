@@ -1,0 +1,18 @@
+
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Search Properties</h2>
+  <form method="post" class="row gy-2 gx-3 align-items-center">
+    {{ form.hidden_tag() }}
+    <div class="col-auto">{{ form.location(class="form-control", placeholder="City") }}</div>
+    <div class="col-auto">{{ form.date(class="form-control") }}</div>
+    <div class="col-auto">{{ form.min_bedrooms(class="form-control", placeholder="Min Beds") }}</div>
+    <div class="col-auto">{{ form.min_price(class="form-control", placeholder="Min $") }}</div>
+    <div class="col-auto">{{ form.max_price(class="form-control", placeholder="Max $") }}</div>
+    <div class="col-auto">{{ form.property_type(class="form-select") }}</div>
+    <div class="col-auto">{{ form.order_by(class="form-select") }}</div>
+    <div class="col-auto"><button class="btn btn-success">{{ form.submit() }}</button></div>
+  </form>
+  <hr>
+  {% include 'property_list.html' %}
+{% endblock %}

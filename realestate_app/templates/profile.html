@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h2>Profile</h2>
+<h5>Addresses</h5>
+<ul class="list-group mb-3">
+  {% for a in current_user.addresses %}
+    <li class="list-group-item">{{ a.street }}, {{ a.city }}, {{ a.state }} {{ a.zip_code }}</li>
+  {% else %}
+    <li class="list-group-item">No addresses yet.</li>
+  {% endfor %}
+</ul>
+<a href="{{ url_for('add_address') }}" class="btn btn-secondary mb-4">Add Address</a>
+{% if current_user.user_type=='renter' %}
+<h5>Credit Cards</h5>
+<ul class="list-group mb-3">
+  {% for c in current_user.cards %}
+    <li class="list-group-item">{{ c.card_number }} (exp {{ c.exp_date }})</li>
+  {% else %}
+    <li class="list-group-item">No cards yet.</li>
+  {% endfor %}
+</ul>
+<a href="{{ url_for('add_card') }}" class="btn btn-secondary">Add Card</a>
+{% endif %}
+{% endblock %}

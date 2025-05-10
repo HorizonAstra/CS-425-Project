@@ -1,0 +1,14 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h2>Book {{ p.property_type.title() }}</h2>
+<form method="post">
+  {{ form.hidden_tag() }}
+  <div class="row mb-3">
+    <div class="col">{{ form.start_date.label }} {{ form.start_date(class="form-control") }}</div>
+    <div class="col">{{ form.end_date.label }} {{ form.end_date(class="form-control") }}</div>
+  </div>
+  <div class="mb-3">{{ form.card_number.label }} {{ form.card_number(class="form-select") }}</div>
+  <button class="btn btn-primary">{{ form.submit() }}</button>
+</form>
+{% endblock %}

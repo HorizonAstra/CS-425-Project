@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h2>Add Property</h2>
+<form method="post">
+  {{ form.hidden_tag() }}
+  <div class="row">
+    <div class="col-md-4">{{ form.property_type.label }} {{ form.property_type(class="form-select") }}</div>
+    <div class="col-md-4">{{ form.city.label }} {{ form.city(class="form-control") }}</div>
+    <div class="col-md-4">{{ form.state.label }} {{ form.state(class="form-control") }}</div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-md-6">{{ form.street.label }} {{ form.street(class="form-control") }}</div>
+    <div class="col-md-3">{{ form.available_from.label }} {{ form.available_from(class="form-control") }}</div>
+    <div class="col-md-3">{{ form.available_to.label }} {{ form.available_to(class="form-control") }}</div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-md-3">{{ form.price.label }} {{ form.price(class="form-control") }}</div>
+    <div class="col-md-3">{{ form.sqr_footage.label }} {{ form.sqr_footage(class="form-control") }}</div>
+    <div class="col-md-3">{{ form.num_rooms.label }} {{ form.num_rooms(class="form-control") }}</div>
+  </div>
+  <div class="mt-2">{{ form.description.label }} {{ form.description(class="form-control") }}</div>
+  <button class="btn btn-primary mt-3">{{ form.submit() }}</button>
+</form>
+{% endblock %}

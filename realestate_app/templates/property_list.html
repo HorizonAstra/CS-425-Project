@@ -1,0 +1,17 @@
+
+<div class="row">
+  {% for p in properties %}
+    <div class="col-md-4 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ p.property_type.title() }} in {{ p.city }}</h5>
+          <p>Price: ${{ p.price }}</p>
+          <p>Available: {{ p.available_from }} → {{ p.available_to }}</p>
+          <a href="{{ url_for('property_detail', pid=p.property_id) }}" class="btn btn-primary">Details</a>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <p>No results.</p>
+  {% endfor %}
+</div>
