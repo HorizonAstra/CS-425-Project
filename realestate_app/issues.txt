@@ -1,0 +1,43 @@
+ISSUES 1
+
+"Registration
+The application should allow both agents and prospective renters to register."
+DONE
+-----------------
+"The application should support the following actions. We indicate for each action whether it can be executed by agents or prospective renters.
+
+A user can create an account by registering with an email address (prospective renters and agents).
+Add/modify payment/address information: A user holding an account can register/modify/delete credit cards and addresses for their account (prospective renters).
+Add/Delete/Modify properties (agents only).
+Search for properties (prospective renters and agents).
+Book properties (prospective renters only)."
+
+The deleting and modifying functionality are not present for credit cards and addresses.
+My Bookings is showing up for agents.
+I hope modifying and delete elsewhere is also provided like delete/modify properties agents only. I don't see them I think.
+-----------------------
+"Payment Information and Addresses
+Renters can add/modify/delete addresses and payment methods (credit cards). Addresses that are payment addresses (billing) for a credit card cannot be deleted before deleting the credit card."
+
+Can't modify or delete addresses and credit cards. Verify the rest as well.
+-----------------------
+"Search for Properties 
+The application should allow a user to search for properties. The minimal information provided should be a location and a date for the property. The user can select whether they want to search for a rental or a sale property. Additionally, the user can provide a limit for the number of bedrooms, the price range, and the property type (e.g., apartment, house, etc.)." 
+
+When only providing location and date, no results show up. Need to provide min beds, price range as well.
+
+
+"Only properties that are located in the specified location and available on the date provided by the user should be shown. Furthermore, the properties must fulfill all the additional requirements stated by the user. For each property, show the price, number of bedrooms, property type, and property description. 
+
+The user can specify how results should be ordered: by price or by number of bedrooms."
+
+The button should say Sort by: initially and then Sort by: + price or bedrooms. Or any other format that is clean and also tells that that button is meant for sorting.
+------------------------
+------------------------
+
+
+
+
+
+ISSUES 2
+

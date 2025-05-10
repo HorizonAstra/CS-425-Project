@@ -1,13 +1,24 @@
-
 {% extends 'base.html' %}
 {% block content %}
-<h2>Add Address</h2>
-<form method="post">
+<h2 class="text-center mb-4">{{ 'Edit' if form.street.data else 'Add' }} Address</h2>
+<form method="post" class="card card-body mx-auto" style="max-width: 500px;">
   {{ form.hidden_tag() }}
-  <div class="mb-3">{{ form.street.label }} {{ form.street(class="form-control") }}</div>
-  <div class="mb-3">{{ form.city.label }} {{ form.city(class="form-control") }}</div>
-  <div class="mb-3">{{ form.state.label }} {{ form.state(class="form-control") }}</div>
-  <div class="mb-3">{{ form.zip_code.label }} {{ form.zip_code(class="form-control") }}</div>
-  <button class="btn btn-primary">{{ form.submit() }}</button>
+  <div class="mb-3">
+    {{ form.street.label(class_="form-label") }}
+    {{ form.street(class_="form-control") }}
+  </div>
+  <div class="mb-3">
+    {{ form.city.label(class_="form-label") }}
+    {{ form.city(class_="form-control") }}
+  </div>
+  <div class="mb-3">
+    {{ form.state.label(class_="form-label") }}
+    {{ form.state(class_="form-control") }}
+  </div>
+  <div class="mb-3">
+    {{ form.zip_code.label(class_="form-label") }}
+    {{ form.zip_code(class_="form-control") }}
+  </div>
+  {{ form.submit(class_="btn btn-success") }}
 </form>
 {% endblock %}

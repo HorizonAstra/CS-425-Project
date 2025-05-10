@@ -1,13 +1,24 @@
-
 {% extends 'base.html' %}
 {% block content %}
-<h2>Add Credit Card</h2>
-<form method="post">
+<h2 class="text-center mb-4">{{ 'Edit' if form.card_number.data else 'Add' }} Credit Card</h2>
+<form method="post" class="card card-body mx-auto" style="max-width: 500px;">
   {{ form.hidden_tag() }}
-  <div class="mb-3">{{ form.card_number.label }} {{ form.card_number(class="form-control") }}</div>
-  <div class="mb-3">{{ form.exp_date.label }} {{ form.exp_date(class="form-control") }}</div>
-  <div class="mb-3">{{ form.cvv.label }} {{ form.cvv(class="form-control") }}</div>
-  <div class="mb-3">{{ form.billing_address.label }} {{ form.billing_address(class="form-select") }}</div>
-  <button class="btn btn-primary">{{ form.submit() }}</button>
+  <div class="mb-3">
+    {{ form.card_number.label(class_="form-label") }}
+    {{ form.card_number(class_="form-control", readonly=form.card_number.data) }}
+  </div>
+  <div class="mb-3">
+    {{ form.exp_date.label(class_="form-label") }}
+    {{ form.exp_date(class_="form-control") }}
+  </div>
+  <div class="mb-3">
+    {{ form.cvv.label(class_="form-label") }}
+    {{ form.cvv(class_="form-control") }}
+  </div>
+  <div class="mb-3">
+    {{ form.billing_address.label(class_="form-label") }}
+    {{ form.billing_address(class_="form-select") }}
+  </div>
+  {{ form.submit(class_="btn btn-success") }}
 </form>
 {% endblock %}

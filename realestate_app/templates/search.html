@@ -1,23 +1,60 @@
-
 {% extends 'base.html' %}
 {% block content %}
-  <h2>Search Properties</h2>
-  <form method="post" class="row gy-2 gx-3 align-items-center">
-    {{ form.hidden_tag() }}
-    {% for field, errors in form.errors.items() %}
-      {% for err in errors %}
-        <div class="alert alert-danger">{{ field }} – {{ err }}</div>
-      {% endfor %}
+<h2 class="mb-4">Search Properties</h2>
+<form method="post" class="row g-3 mb-4">
+  {{ form.hidden_tag() }}
+  <div class="col-md-4">
+    {{ form.location.label(class_="form-label") }}
+    {{ form.location(class_="form-control") }}
+  </div>
+  <div class="col-md-2">
+    {{ form.date.label(class_="form-label") }}
+    {{ form.date(class_="form-control") }}
+  </div>
+  <div class="col-md-2">
+    {{ form.min_bedrooms.label(class_="form-label") }}
+    {{ form.min_bedrooms(class_="form-control") }}
+  </div>
+  <div class="col-md-2">
+    {{ form.min_price.label(class_="form-label") }}
+    {{ form.min_price(class_="form-control") }}
+  </div>
+  <div class="col-md-2">
+    {{ form.max_price.label(class_="form-label") }}
+    {{ form.max_price(class_="form-control") }}
+  </div>
+  <div class="col-md-3">
+    {{ form.property_type.label(class_="form-label") }}
+    {{ form.property_type(class_="form-select") }}
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">Sort by</label>
+    {{ form.order_by(class_="form-select") }}
+  </div>
+  <div class="col-md-2 align-self-end">
+    {{ form.submit(class_="btn btn-primary") }}
+  </div>
+</form>
+
+{% if properties %}
+  <div class="row">
+    {% for p in properties %}
+      <div class="col-md-4 mb-3">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ p.city }}, {{ p.state }}</h5>
+            <p class="card-text">
+              {{ p.property_type|capitalize }} — ${{ p.price }}<br>
+              {% if p.house %}Bedrooms: {{ p.house.num_rooms }}{% endif %}
+              {% if p.apartment %}Bedrooms: {{ p.apartment.num_rooms }}{% endif %}
+            </p>
+            <a href="{{ url_for('property_detail', pid=p.property_id) }}" class="btn btn-outline-primary">
+              Details
+            </a>
+          </div>
+        </div>
+      </div>
     {% endfor %}
-    <div class="col-auto">{{ form.location(class="form-control", placeholder="City") }}</div>
-    <div class="col-auto">{{ form.date(class="form-control") }}</div>
-    <div class="col-auto">{{ form.min_bedrooms(class="form-control", placeholder="Min Beds") }}</div>
-    <div class="col-auto">{{ form.min_price(class="form-control", placeholder="Min $") }}</div>
-    <div class="col-auto">{{ form.max_price(class="form-control", placeholder="Max $") }}</div>
-    <div class="col-auto">{{ form.property_type(class="form-select") }}</div>
-    <div class="col-auto">{{ form.order_by(class="form-select") }}</div>
-    <div class="col-auto"><button class="btn btn-success">{{ form.submit() }}</button></div>
-  </form>
-  <hr>
-  {% include 'property_list.html' %}
+  </div>
+{% endif %}
 {% endblock %}
