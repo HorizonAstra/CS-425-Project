@@ -15,12 +15,14 @@
       </form>
     </span>
   </li>
+  {% else %}
+  <li class="list-group-item">No addresses yet.</li>
   {% endfor %}
 </ul>
 
-<h4>Payment Methods</h4>
 {% if current_user.user_type == 'renter' %}
-<a href="{{ url_for('add_card') }}" class="btn btn-outline-primary mb-2">Add Credit Card</a>
+<h4>Payment&nbsp;Methods</h4>
+<a href="{{ url_for('add_card') }}" class="btn btn-outline-primary mb-2">Add Credit&nbsp;Card</a>
 <ul class="list-group">
   {% for c in current_user.cards %}
   <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -32,6 +34,8 @@
       </form>
     </span>
   </li>
+  {% else %}
+  <li class="list-group-item">No cards yet.</li>
   {% endfor %}
 </ul>
 {% endif %}

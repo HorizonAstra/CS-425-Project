@@ -1,20 +1,30 @@
-
 {% extends 'base.html' %}
 {% block content %}
 <h2>Bookings for My Properties</h2>
 <table class="table">
-<thead><tr><th>Property</th><th>Renter</th><th>Dates</th><th>Total</th></tr></thead>
-<tbody>
-{% for b in bookings %}
-  <tr>
-    <td>{{ b.property.city }} ({{ b.property.property_type }})</td>
-    <td>{{ b.renter_email }}</td>
-    <td>{{ b.start_date }} → {{ b.end_date }}</td>
-    <td>${{ b.total_cost }}</td>
-  </tr>
-{% else %}
-  <tr><td colspan="4">No bookings yet.</td></tr>
-{% endfor %}
-</tbody>
+  <thead>
+    <tr>
+      <th>Property</th><th>Renter</th><th>Dates</th><th>Total</th><th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for b in bookings %}
+    <tr>
+      <td>{{ b.property.city }} ({{ b.property.property_type }})</td>
+      <td>{{ b.renter_email }}</td>
+      <td>{{ b.start_date }} → {{ b.end_date }}</td>
+      <td>${{ '{:,.2f}'.format(b.total_cost) }}</td>
+      <td class="text-end">
+        <a href="{{ url_for('property_detail', pid=b.property_id) }}"
+           class="btn btn-sm btn-outline-primary me-1">Details</a>
+        <a href="{{ url_for('cancel_booking', bid=b.booking_id) }}"
+           class="btn btn-sm btn-outline-danger"
+           onclick="return confirm('Cancel this booking?');">Cancel</a>
+      </td>
+    </tr>
+  {% else %}
+    <tr><td colspan="5">No bookings yet.</td></tr>
+  {% endfor %}
+  </tbody>
 </table>
 {% endblock %}

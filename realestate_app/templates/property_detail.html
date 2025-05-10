@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block title %}Property #{{ p.property_id }}{% endblock %}
 {% block content %}
-<h2>{{ p.property_type|capitalize }} – ${{ '{:,.2f}'.format(p.price) }}</h2>
+<h2>{{ p.property_type|capitalize }} – ${{ '{:,.2f}'.format(p.price) }}&nbsp;/mo</h2>
 <p class="text-muted">{{ p.street }}, {{ p.city }}, {{ p.state }}</p>
 <p>{{ p.description }}</p>
 
 <ul class="list-group mb-3">
-  <li class="list-group-item"><strong>Square feet:</strong> {{ p.sqr_footage or 'N/A' }}</li>
+  <li class="list-group-item"><strong>Square&nbsp;feet:</strong> {{ p.sqr_footage or 'N/A' }}</li>
   {% if p.house %}<li class="list-group-item"><strong>Bedrooms:</strong> {{ p.house.num_rooms }}</li>{% endif %}
   {% if p.apartment %}<li class="list-group-item"><strong>Bedrooms:</strong> {{ p.apartment.num_rooms }}</li>{% endif %}
   <li class="list-group-item"><strong>Available&nbsp;from:</strong> {{ p.available_from }} to {{ p.available_to }}</li>
