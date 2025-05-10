@@ -4,6 +4,11 @@
   <h2>Search Properties</h2>
   <form method="post" class="row gy-2 gx-3 align-items-center">
     {{ form.hidden_tag() }}
+    {% for field, errors in form.errors.items() %}
+      {% for err in errors %}
+        <div class="alert alert-danger">{{ field }} – {{ err }}</div>
+      {% endfor %}
+    {% endfor %}
     <div class="col-auto">{{ form.location(class="form-control", placeholder="City") }}</div>
     <div class="col-auto">{{ form.date(class="form-control") }}</div>
     <div class="col-auto">{{ form.min_bedrooms(class="form-control", placeholder="Min Beds") }}</div>

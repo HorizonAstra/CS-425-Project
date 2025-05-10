@@ -1,0 +1,15 @@
+# ─── Ignore local / editor / build artefacts ─────────────────
+venv/
+__pycache__/
+*.py[cod]
+*.log
+.DS_Store
+.env
+
+# Git, IDE, OS junk
+.git
+.idea/
+.vscode/
+
+# Do *not* ignore the Alembic migrations we need for flask db upgrade
+# (was the root cause of the “/app/migrations not found” crash)
