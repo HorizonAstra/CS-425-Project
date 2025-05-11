@@ -359,28 +359,26 @@ def search():
         if form.max_price.data is not None:
             q = q.filter(Property.price <= form.max_price.data)
 
+        # --- bedrooms filter (keep track if we already joined) ----------------
+        joined_bed = False
         if form.min_bedrooms.data is not None:
-            q = (
-                q.outerjoin(House)
-                 .outerjoin(Apartment)
-                 .filter(
-                     (House.num_rooms     >= form.min_bedrooms.data) |
-                     (Apartment.num_rooms >= form.min_bedrooms.data)
-                 )
-            )
+            q = (q.outerjoin(House)
+                   .outerjoin(Apartment)
+                   .filter(
+                       (House.num_rooms     >= form.min_bedrooms.data) |
+                       (Apartment.num_rooms >= form.min_bedrooms.data)
+                   ))
+            joined_bed = True
 
         # --- ordering ---------------------------------------------------------
         if form.order_by.data == 'price':
             q = q.order_by(Property.price)
         else:  # bedrooms
-            # make sure the tables we’re ordering on are in the FROM clause
-            q = (
-                q.outerjoin(House)
-                .outerjoin(Apartment)
-                .order_by(
-                    House.num_rooms.nullslast(),
-                    Apartment.num_rooms.nullslast()
-                )
+            if not joined_bed:               # add the joins only once
+                q = q.outerjoin(House).outerjoin(Apartment)
+            q = q.order_by(
+                House.num_rooms.nullslast(),
+                Apartment.num_rooms.nullslast()
             )
 
         properties = q.all()
