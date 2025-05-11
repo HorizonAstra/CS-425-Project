@@ -83,9 +83,9 @@ class Property(db.Model):
     available_to    = db.Column(db.Date)
     sqr_footage     = db.Column(db.Integer)
 
-    house           = db.relationship('House', uselist=False, backref='property')
-    apartment       = db.relationship('Apartment', uselist=False, backref='property')
-    commercial      = db.relationship('CommercialBuilding', uselist=False, backref='property')
+    house           = db.relationship('House', uselist=False, backref='property', cascade="all, delete-orphan", passive_deletes=True)
+    apartment       = db.relationship('Apartment', uselist=False, backref='property', cascade="all, delete-orphan", passive_deletes=True)
+    commercial      = db.relationship('CommercialBuilding', uselist=False, backref='property', cascade="all, delete-orphan", passive_deletes=True)
     bookings        = db.relationship('Booking', backref='property', cascade='all, delete-orphan')
 
 

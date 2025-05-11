@@ -309,6 +309,7 @@ def delete_property(pid):
     p = Property.query.get_or_404(pid)
     if current_user.user_type != 'agent' or p.agent_email != current_user.email:
         flash('Not authorized.', 'danger')
+        return redirect(url_for('search'))
     else:
         db.session.delete(p)
         db.session.commit()
@@ -372,9 +373,14 @@ def search():
         if form.order_by.data == 'price':
             q = q.order_by(Property.price)
         else:  # bedrooms
-            q = q.order_by(
-                House.num_rooms.nullslast(),
-                Apartment.num_rooms.nullslast()
+            # make sure the tables we’re ordering on are in the FROM clause
+            q = (
+                q.outerjoin(House)
+                .outerjoin(Apartment)
+                .order_by(
+                    House.num_rooms.nullslast(),
+                    Apartment.num_rooms.nullslast()
+                )
             )
 
         properties = q.all()

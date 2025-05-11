@@ -5,7 +5,8 @@
   {{ form.hidden_tag() }}
   <div class="mb-3">
     {{ form.card_number.label(class_="form-label") }}
-    {{ form.card_number(class_="form-control", readonly=form.card_number.data) }}
+    {{ form.card_number(class_="form-control",
+                    readonly=(request.endpoint == 'edit_card')) }}
   </div>
   <div class="mb-3">
     {{ form.exp_date.label(class_="form-label") }}

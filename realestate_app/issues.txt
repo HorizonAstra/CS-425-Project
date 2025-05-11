@@ -5,11 +5,14 @@
 Issues:
 
 Renter:
-- Cannot enter card number
-- Under "Search", when I do "sort by bedrooms" it throws an Internal Server Error.
-- Due to not being able to add a credit card, booking is not possible since no payment method can be selected.  
+DONE- Cannot enter card number 
+DONE- Under "Search", when I do "sort by bedrooms" it throws an Internal Server Error.
+DONE- Due to not being able to add a credit card, booking is not possible since no payment method can be selected.  
 
 
 Agent:
-- Under "Search", when I do "sort by bedrooms" it throws an Internal Server Error. 
-- When trying to delete a property, it throws an Internal Server Error. 
+DONE- Under "Search", when I do "sort by bedrooms" it throws an Internal Server Error. 
+DONE- When trying to delete a property, it throws an Internal Server Error. 
+
+
+Other teammates - please verify
