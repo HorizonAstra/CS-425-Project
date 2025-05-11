@@ -20,6 +20,29 @@
     <div class="col-md-3">{{ form.num_rooms.label }} {{ form.num_rooms(class="form-control") }}</div>
   </div>
   <div class="mt-2">{{ form.description.label }} {{ form.description(class="form-control") }}</div>
+  <!-- subtype-specific fields -->
+  <div class="row mt-2">
+    <div class="col-md-4" id="businessTypeGroup">
+      {{ form.business_type.label }} {{ form.business_type(class="form-control") }}
+    </div>
+    <div class="col-md-4" id="buildingTypeGroup">
+      {{ form.building_type.label }} {{ form.building_type(class="form-control") }}
+    </div>
+  </div>
+
   <button class="btn btn-primary mt-3">{{ form.submit() }}</button>
+</form>
+
+<!-- show/hide the subtype inputs based on the selected property_type -->
+<script>
+function toggleSubFields () {
+  const t = document.querySelector('[name="property_type"]').value;
+  document.getElementById('businessTypeGroup').style.display  = (t === 'commercial') ? 'block' : 'none';
+  document.getElementById('buildingTypeGroup').style.display  = (t === 'apartment')  ? 'block' : 'none';
+}
+toggleSubFields();
+document.querySelector('[name="property_type"]').addEventListener('change', toggleSubFields);
+</script>
+
 </form>
 {% endblock %}
